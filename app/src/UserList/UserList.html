@@ -1,5 +1,13 @@
-<div class="list-group">
-
-    <user-list-item user="singleUser" ng-repeat="singleUser in $ctrl.users"></user-list-item>
-
-</div>
+<md-content class="md-padding" style="max-width: 400px;">
+        <md-toolbar layout="row" class="md-hue-3">
+                <div class="md-toolbar-tools">
+                  <span>Users List</span>
+                </div>
+              </md-toolbar>
+    <md-list>
+        <md-subheader class="md-no-sticky">Click on Name to view user details</md-subheader>
+        <md-list-item ng-repeat="singleUser in $ctrl.users" class="md-offset" class="md-3-line" ng-click="null" href="#!/users/{{ singleUser.id }}">
+            <user-list-item user="singleUser"></user-list-item>
+        </md-list-item>
+    </md-list>
+</md-content>

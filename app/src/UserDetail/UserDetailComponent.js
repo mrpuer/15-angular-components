@@ -2,37 +2,36 @@
 
 userApp.component('userDetail', {
     controller: function userDetailCtrl ($routeParams, UsersService) {
-        this.userLoaded = false;
-        this.notfoundError = false;
-        let userLoaded = this.userLoaded;
-        let notfoundError = this.notfoundError;
+        var user = this;
+        user.userLoaded = false;
+        user.notfoundError = false;
 
         this.user = UsersService.get({
             userId: $routeParams['userId']
         }, function(successResult) {
-            userLoaded = true;
+            user.userLoaded = true;
     
-            this.activeTab = 1;
-            this.disableControlTab = true;
+            user.activeTab = 1;
+            user.disableControlTab = true;
         }, function(errorResult) {
-            notfoundError = true;
-            userLoaded = true;
+            user.notfoundError = true;
+            user.userLoaded = true;
         });
     
-        this.user.$promise.then(function(result) {
-            //this.userLoaded = true;
+        user.user.$promise.then(function(result) {
+            //user.userLoaded = true;
         });
     
-        this.deleteUser = function(userId) {
+        user.deleteUser = function(userId) {
     
             this.user.$delete({
                 userId: userId
             }, function(successResult) {
                 // Окей!
-                this.deletionSuccess = true;
+                user.deletionSuccess = true;
             }, function(errorResult) {
                 // Не окей..
-                this.deletionError = true;
+                user.deletionError = true;
             });
     
         }
